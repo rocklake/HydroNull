@@ -1,4 +1,4 @@
-# dependencies: meteorclient
+# dependencies: meteorclient and FileAPI
 import sys
 import re
 import time
