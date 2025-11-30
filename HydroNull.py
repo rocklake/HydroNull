@@ -5,7 +5,7 @@ import time
 import threading
 # config
 
-mainpath = "/home/bar/.local/share/PrismLauncher/instances/2b2t/minecraft/FileApi/"
+ApiPath = "/home/bar/.local/share/PrismLauncher/instances/2b2t/minecraft/FileApi/"
 #           | that must be here
 you = "burning_rubber"
 friends = ("‰", "burning_rubber")
@@ -14,16 +14,16 @@ FriendsChatOnly = False # chat must be true
 
 def kit(name):
     try:
-        kitf = open(mainpath + name, "r")
+        kitf = open(ApiPath + name, "r")
         for line in kitf.readlines():
             tochat = line
             if tochat.startswith("/"):
                 tochat = tochat.replace("/", "")
-                commandf = open(mainpath + "command.txt", "w")
+                commandf = open(ApiPath + "command.txt", "w")
                 commandf.write(tochat)
                 commandf.close()
             else:
-                tochatf = open(mainpath + "tochat.txt", "w")
+                tochatf = open(ApiPath + "tochat.txt", "w")
                 tochatf.write(tochat)
                 tochatf.close()
             time.sleep(0.1)
@@ -31,12 +31,12 @@ def kit(name):
     except:
         pass
 
-def chat(mainpath, chat, FriendsChatOnly, you):
+def chat(ApiPath, chat, FriendsChatOnly, you):
     if chat == False:
         return
     oldlast = ""
     while True:
-        lastchatf = open(mainpath + "lastchat.txt", "r")
+        lastchatf = open(ApiPath + "lastchat.txt", "r")
         lastchat = lastchatf.read()
         lastchat = lastchat.strip()
 
@@ -71,17 +71,17 @@ def chat(mainpath, chat, FriendsChatOnly, you):
                 print()
                 oldlast = lastchat
         time.sleep(0.047)
-chatt = threading.Thread(target=chat, args=(mainpath,chat,FriendsChatOnly,you))
+chatt = threading.Thread(target=chat, args=(ApiPath,chat,FriendsChatOnly,you))
 chatt.start()
 print("V0.1")
 while True:
     tochat = input()
     if tochat.startswith("/"):
             tochat = tochat.replace("/", "")
-            commandf = open(mainpath + "command.txt", "w")
+            commandf = open(ApiPath + "command.txt", "w")
             commandf.write(tochat)
             commandf.close()
     else:
-            tochatf = open(mainpath + "tochat.txt", "w")
+            tochatf = open(ApiPath + "tochat.txt", "w")
             tochatf.write(tochat)
             tochatf.close()
